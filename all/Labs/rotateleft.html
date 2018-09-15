@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Perspective Page View Navigation</title>
+		<meta name="description" content="Perspective Page View Navigation: Transforms the page in 3D to reveal a menu" />
+		<meta name="keywords" content="3d page, menu, navigation, mobile, perspective, css transform, web development, web design" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load -->
+		<script src="js/modernizr.custom.25376.js"></script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7243260-2']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+	</head>
+	<body>
+		<div id="perspective" class="perspective effect-rotateleft">
+			<div class="container">
+				<div class="wrapper"><!-- wrapper needed for scroll -->
+					<!-- Top Navigation -->
+					<div class="codrops-top clearfix">
+						<a class="left" href="http://tympanus.net/Development/ProgressButtonStyles/"><span>Next Lab</span></a>
+						<a class="right" href="/"><span>Home</span></a>
+					</div>
+					<header class="codrops-header">
+						<h1>Phenomenon Interaction Lab<span></span></h1>
+						Interactive UI Resource Library
+					</header>
+					<div class="main clearfix">
+            <div class="column" style=' padding-top:10px;'>
+							<p><button style='margin-bottom:20px;' id="showMenu">Open Menu</button></p>
+							<header class="codrops-header sec-header">
+								<p class='sec-number'>Section 1</p>
+								<h1 class='section-header'>Navigation</h1>
+							</header>
+							<p class='description-copy'>Navigation menus are an essential part to the user experience. Below are several transitions for navigation menu's. Ease of use, combined with unique style, can evoke an immediate emotional connection between the user and the website. Click on these buttons, then click "See All Labs" to see the content being pushed away in 3D to reveal a navigation or other items.</p>
+						</div>
+            <br>
+            <br>
+						<div style='margin-top:40px;' class="column">
+							<nav class="codrops-demos nav-demos">
+								<a href="index.html">Open Right</a>
+								<a href="moveleft.html">Move Left</a>
+								<a href="rotateleft.html" class="current-demo">Rotate Left</a>
+								<a href="movedown.html">Move Down</a>
+								<a href="rotatetop.html">Rotate Top</a>
+								<a href="laydown.html">Lay Down</a>
+							</nav>
+						</div>
+					</div><!-- /main -->
+				</div><!-- wrapper -->
+			</div><!-- /container -->
+			<nav class="outer-nav rotate-left vertical">
+				<a href="#" class="">Home</a>
+				<a href="#" class="">Input Interactions</a>
+				<a href="#" class="">Layout</a>
+				<a href="#" class="">Transitions</a>
+				<a href="#" class="">Text Effects</a>
+				<a href="#" class="">Experimental</a>
+			</nav>
+		</div><!-- /perspective -->
+		<script src="js/classie.js"></script>
+		<script src="js/menu.js"></script>
+		<!-- For the demo ad only -->
+<script src="//tympanus.net/codrops/adpacks/demoad.js"></script>
+	</body>
+</html>

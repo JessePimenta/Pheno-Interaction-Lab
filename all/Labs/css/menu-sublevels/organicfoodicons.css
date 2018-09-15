@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'organicfoodicons';
+    src: url('../fonts/organicfoodicons/organicfoodicons.eot?56tr8g');
+    src: url('../fonts/organicfoodicons/organicfoodicons.eot?56tr8g#iefix') format('embedded-opentype'), url('../fonts/organicfoodicons/organicfoodicons.woff2?56tr8g') format('woff2'), url('../fonts/organicfoodicons/organicfoodicons.ttf?56tr8g') format('truetype'), url('../fonts/organicfoodicons/organicfoodicons.woff?56tr8g') format('woff'), url('../fonts/organicfoodicons/organicfoodicons.svg?56tr8g#organicfoodicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.foodicon {
+    font-family: 'organicfoodicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.foodicon--jam::before {
+    content: "🍓";
+}
+
+.foodicon--radish::before {
+    content: "🥔";
+}
+
+.foodicon--carrot::before {
+    content: "🥕";
+}
+
+.foodicon--coconut::before {
+/* content: "fonts/logo-intuit-preferred.png"; */
+src: url(".//fonts/logo-intuit-preferred.png")
+}
+
+.foodicon--corn::before {
+    content: "🌽";
+}
+
+.foodicon--cucumber::before {
+    content: "🥒";
+}
+
+.foodicon--eggplant::before {
+    content: "🍆";
+}
+
+.foodicon--ekobag::before {
+    content: "🍆";
+}
+
+.foodicon--grain::before {
+    content: "🥑";
+}
+
+.foodicon--grape::before {
+    content: "🍇";
+}
+
+.foodicon--leaf::before {
+    content: "🥗";
+}
+
+.foodicon--lemon::before {
+    content: "🍋";
+}
+
+.foodicon--lettuce::before {
+    content: "🥗";
+}
+
+.foodicon--milk::before {
+    content: "🥛";
+}
+
+.foodicon--mushrooms::before {
+    content: "🥒";
+}
+
+.foodicon--onion::before {
+    content: "🍠";
+}
+
+.foodicon--pear::before {
+    content: "🍐";
+}
+
+.foodicon--pepper::before {
+    content: "🌽";
+}
+
+.foodicon--smoothie::before {
+    content: "🥤";
+}
+
+.foodicon--squeezer::before {
+    content: "🍶";
+}
+
+.foodicon--tomato::before {
+    content: "🍅";
+}
+
+.foodicon--watermelon::before {
+    content: "🍉";
+}
+
+.foodicon--apple::before {
+    content: "🍏";
+}
+
+.foodicon--banana::before {
+    content: "🍌";
+}
+
+.foodicon--basket::before {
+    content: "🍱";
+}
+
+.foodicon--blender::before {
+    content: "🍶";
+}
+
+.foodicon--bread::before {
+    content: "🍞";
+}
+
+.foodicon--broccoli::before {
+    content: "🥦";
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Expanding Bar Menus | Demo 1 </title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Jesse Pimenta" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700i" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/barmenucss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/barmenucss/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/barmenucss/component.css" />
+		<script>document.documentElement.className = 'js';</script>
+	</head>
+	<body class="demo-1">
+		<!-- <svg class="hidden">
+			<symbol id="icon-arrow" viewBox="0 0 24 24">
+				<title>arrow</title>
+				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
+			</symbol>
+			<symbol id="icon-drop" viewBox="0 0 24 24">
+				<title>drop</title>
+				<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/><path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
+			</symbol>
+			<symbol id="icon-caret" viewBox="0 0 24 24">
+				<title>caret</title>
+				<polygon points="15.7,16.6 11.1,12 15.7,7.4 14.3,6 8.3,12 14.3,18"/>
+			</symbol>
+			<symbol id="icon-menu" viewBox="0 0 24 24">
+				<title>menu</title>
+				<path d="M23.8,6H0.1V3h23.7V6z M23.8,10.5H0.1v3h23.7V10.5z M14.2,18h-14v3h14V18z"/>
+			</symbol>
+			<symbol id="icon-cross" viewBox="0 0 24 24">
+				<title>cross</title>
+				<path d="M14.1,12l7.3,7.3l-2.1,2.1L12,14.1l-7.3,7.3l-2.1-2.1L9.9,12L2.6,4.7l2.1-2.1L12,9.9l7.3-7.3l2.1,2.1L14.1,12z"/>
+			</symbol>
+		</svg> -->
+		<main class="view">
+			<div class="content">
+				<div class="deco">
+					<p class="deco__text">This lab is an exploration of the Wilson website which is also victim to tons of finnicky sub-menus... Testing a presentation in a unique and simplified way.</p>
+				</div>
+				<header class="codrops-header">
+									<div class="codrops-top clearfix">
+										<a class="left" href="/navigation-interactions-2d.html"><span>Previous Lab</span><b style="color:white">/</b></a>
+										<a class="left" href="/navigation-interactions-2d.html"><span> Next Lab</span></a>
+										<a class="right" href="/"><span>Home</span></a>
+									</div>
+									<h1 class='tagline'>MEET OUR X FACTOR<h1>
+						<p class="codrops-header__info"><br/><h1>What do you get when you add a revolutionary idea + the brightest minds in sports equipment engineering + player insights + sophisticated technology + an unwavering love of the game?
+						<br><br>You get X. Go behind the closed doors of Wilson LABS and see what went into one of our most revolutionary breakthroughs.<h1><br/></p>
+					<span class="codrops-header__deco"></span>
+					<h1 class="codrops-header__title"></h1>
+					<p class="codrops-header__tagline">expanding bar menus</p>
+					<nav class="demos">
+						<span class="demos__text">cors tuum magicus urn, aeternus canum fidelis, lapis et caro per sempre, nunquam intervalum</span>
+						<a class="demo demo--current" href="index.html">1</a>
+						<a class="demo" href="index2.html">2</a>
+						<a class="demo" href="index3.html">3</a>
+					</nav>
+				</header>
+			</div>
+			<button class="btn btn--menu">
+				<svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg>
+				<svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg>
+			</button>
+			<nav class="tabsnav tabsnav--vertical tabsnav--ander">
+				<div class="tabsnav__item">
+					<div class="tabsnav__bar"></div>
+					<h3 class="tabsnav__title">SHOP</h3>
+				</div>
+				<div class="tabsnav__item">
+					<div class="tabsnav__bar"></div>
+					<h3 class="tabsnav__title">CUSTOM</h3>
+				</div>
+				<div class="tabsnav__item">
+					<div class="tabsnav__bar"></div>
+					<h3 class="tabsnav__title">EXPLORE</h3>
+				</div>
+			</nav>
+			<div class="tabscontent">
+				<div class="tabscontent__item">
+					<figure class="poster">
+						<img class="poster__img" src="img/barmenu/download.png" alt="Poster 1"/>
+						<figcaption class="poster__caption">
+							<h2 class="poster__title">
+							Baseball<br/>Tennis<br/>Golf<br/>Football<br/>Basketball<br/>Soccer<br/>Volleyball<br/>Fastpitch Softball<br/>Badminton<br/>Platform Tennis<br/>Racquetball<br/>Squash<br/>Pickleball<br/>Padel<br/>Apparel<br/>Movie Character Shop<br/>corn</h2>
+							<p class="poster__deco"></p>
+							<div style='visibility:hidden' class="poster__box"></div>
+							<span style='visibility:hidden' class="poster__number">01</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="tabscontent__item">
+					<figure class="poster">
+						<img class="poster__img" src="img/img1.jpg" alt="Poster 1"/>
+						<figcaption class="poster__caption">
+							<h2 class="poster__title">blue<br/>gun</h2>
+							<p class="poster__deco">fingerpaint</p>
+							<div class="poster__box"></div>
+							<span class="poster__number">02</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="tabscontent__item">
+					<figure class="poster">
+						<img class="poster__img" src="img/img1.jpg" alt="Poster 1"/>
+						<figcaption class="poster__caption">
+							<h2 class="poster__title">home<br/>maze</h2>
+							<p class="poster__deco">binary sun</p>
+							<div class="poster__box"></div>
+							<span class="poster__number">03</span>
+						</figcaption>
+					</figure>
+				</div>
+				<button class="btn btn--back">⟶</button>
+			</div>
+		</main>
+		<script src="js/barmenu/anime.min.js"></script>
+		<script src="js/barmenu/enquire.min.js"></script>
+		<script src="js/barmenu/tabsnav.js"></script>
+		<script src="js/barmenu/bar-menu-demo1.js"></script>
+	</body>
+</html>

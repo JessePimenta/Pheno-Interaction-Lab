@@ -14,18 +14,6 @@
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load -->
 		<script src="js/modernizr.custom.25376.js"></script>
-
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-7243260-2']);
-_gaq.push(['_trackPageview']);
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-
 	</head>
 	<body>
 		<div id="perspective" class="perspective effect-moveleft">
@@ -33,16 +21,15 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 				<div class="wrapper"><!-- wrapper needed for scroll -->
 					<!-- Top Navigation -->
 					<div class="codrops-top clearfix">
-						<a class="left" href="http://tympanus.net/Development/ProgressButtonStyles/"><span>Next Lab</span></a>
+						<a class="left" href="/navigation-interactions-2d.html"><span>Next Lab</span></a>
 						<a class="right" href="/"><span>Home</span></a>
 					</div>
 					<header class="codrops-header">
 						<h1>Phenomenon Interaction Lab<span></span></h1>
-						Interactive UI Resource Library
+						UI Resource Library
 					</header>
 					<div class="main clearfix">
 						<div class="column" style=' padding-top:10px;'>
-							<p><button style='margin-bottom:20px;' id="showMenu">Open Menu</button></p>
 							<header class="codrops-header sec-header">
 								<p class='sec-number'>Section 1</p>
 								<h1 class='section-header'>Navigation</h1>
@@ -51,23 +38,26 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 						</div>
 						<br><br>
 						<div class="column">
-							<nav style='margin-top:40px;' class="codrops-demos nav-demos">
-								<a href="/">Open Menu</a>
-								<a href="moveleft.html" class="current-demo">Move Left</a>
+							<nav style='margin-top:0px;' class="codrops-demos nav-demos">
+								<a href="/navigation-menu-3D.html">Pan Right</a>
+								<a href="moveleft.html" class="current-demo" >Move Left</a>
 								<a href="rotateleft.html">Rotate Left</a>
 								<a href="movedown.html">Move Down</a>
 								<a href="rotatetop.html">Rotate Top</a>
 								<a href="laydown.html">Lay Down</a>
 							</nav>
+							<p><button style='margin-bottom:20px;margin-top:40px' id="showMenu">Open Menu</button></p>
+
 						</div>
 					</div><!-- /main -->
 				</div><!-- wrapper -->
 			</div><!-- /container -->
 			<nav class="outer-nav rotate-left vertical">
 				<a href="#" class="">Home</a>
+				<a href="#" class="">Navigation</a>
 				<a href="#" class="">Input Interactions</a>
-				<a href="#" class="">Layout</a>
-				<a href="#" class="">Transitions</a>
+				<a href="/layout.html" class="">Layout</a>
+				<a href="/transitions.html" class="">Transitions</a>
 				<a href="#" class="">Text Effects</a>
 				<a href="#" class="">Experimental</a>
 			</nav>

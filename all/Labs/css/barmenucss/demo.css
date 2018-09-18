@@ -1,3 +1,43 @@
+.fadeMe {
+	animation: fadein 1s;
+	-moz-animation: fadein 1s; /* Firefox */
+	-webkit-animation: fadein 1s; /* Safari and Chrome */
+	-o-animation: fadein 1s; /* Opera */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 @font-face {
 	font-weight: normal;
 	font-style: normal;
@@ -124,9 +164,40 @@ a:focus {
 	width: 100%;
 	height: 100%;
 	padding: 25px 50px;
+	background: url(img/freegifmaker.me_2cVrw.gif) no-repeat top left;
+	background-size: auto 100%;
+	background-position-x:-160px;
+	/* animation: backx 40s ease-in-out;
+	transition: all 1.2s */
+	position: absolute;
+}
+
+@media (max-width:1080px) {
+	.content {
+		position: relative;
+	}
+	.header.codrops-header h1 {
+		width: 100%;
+	}
+}
+
+.contentbg {
 	background: url(/img/barmenu/1920x855-bg-hero-wilsonx-ball.jpg) no-repeat top left;
 	background-size: auto 100%;
+	background-position-x: -264px;
+	animation: backx 10s cubic-bezier(0.22, 0.61, 0.36, 1);
+	animation-fill-mode: forwards;
+	transition: all 1.2s
+	z-index: 0;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	position: relative;
+	opacity: 0.6;
+	/* filter: blur(93px); */
 }
+
 
 .deco__text {
 	font-size: 0.5em;
@@ -146,12 +217,14 @@ a:focus {
 
 /* Header */
 .codrops-header {
+	top: -4px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	height: 100%;
 	text-align: right;
+	right: -40px;
 }
 
 .codrops-header__info {
@@ -608,6 +681,10 @@ h1.tagline {
 }
 
 @media screen and (max-width: 40em) {
+	h1.tagline {
+		font-size: 66px !important;
+	}
+
 	.view {
 		overflow: auto;
 		height: auto;
@@ -619,8 +696,10 @@ h1.tagline {
 	}
 	.content {
 		flex-direction: column;
-		padding: 10px;
+		padding: 5px;
 	}
+
+
 	.codrops-header__info {
 		font-size: 1.15em;
 	}
@@ -719,4 +798,18 @@ h3.tabsnav__title:hover {
 
 .tabsnav__bar:hover {
     background: white;
+}
+
+@-webkit-keyframes backx {
+    0% {
+        transform: scale(1);
+				filter: blur(40px);
+       }
+    100% {
+        transform: scale(1.2);
+				filter: blur(0px);
+
+
+    }
+
 }

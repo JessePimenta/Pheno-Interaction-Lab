@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Phenomenon Interaction Lab</title>
+		<meta name="description" content="Perspective Page View Navigation: Transforms the page in 3D to reveal a menu" />
+		<meta name="keywords" content="3d page, menu, navigation, mobile, perspective, css transform, web development, web design" />
+		<meta name="author" content="Jesse Pimenta" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load -->
+		<script src="js/modernizr.custom.25376.js"></script>
+	</head>
+	<body class='fadeMe'>
+		<div id="perspective" class="perspective effect-airbnb">
+			<div class="container">
+				<div class="wrapper"><!-- wrapper needed for scroll -->
+					<!-- Top Navigation -->
+					<div class="codrops-top clearfix">
+						<a class="left" href="/navigation-interactions-2d.html"><span>Next Lab</span></a>
+						<a class="right" href="/"><span>Home</span></a>
+					</div>
+					<header class="codrops-header">
+						<h1>Navigation</h1>
+						<!-- <p class='sec-number'>All Navigation Labs<p> -->
+					</header>
+					<div class="main clearfix">
+						<div class="column" style='min-height:100px; padding-top:10px;'>
+							<!-- <p><button style='margin-bottom:20px;' id="showMenu">See All Labs</button></p> -->
+							<header class="codrops-header sec-header">
+								<p class='sec-number'>Section 1</p>
+								<h1 class='section-header'>Navigation</h1>
+							</header>
+							<p class='description-copy'>Navigation menus are an essential part to the user experience. Below are several transitions for navigation menu's. Ease of use, combined with unique style, can evoke an immediate emotional connection between the user and the website. Click on these buttons, then click "See All Labs" to see the content being pushed away in 3D to reveal a navigation or other items.</p>
+						</div>
+						<br>
+						<br>
+						<div style='margin-top:40px;' class="column">
+							<nav class="codrops-demos nav-demos">
+								<a href="/navigation-menu-3d.html">Nav Open 3D</a>
+								<a href="/Navigation-Interactions-2D.html">Nav Open 2D</a>
+								<a href="/sublevel-menu.html">Sub Level Nav Menu</a>
+								<a href="/bar-menu.html">Bar Menu</a>
+								<!-- <a href="movedown.html">Move Down</a>
+								<a href="rotatetop.html">Rotate Top</a>
+								<a href="laydown.html">Lay Down</a> -->
+							</nav>
+						</div>
+					</div><!-- /main -->
+				</div><!-- wrapper -->
+				<div class="canvas">
+		<canvas resize="true" id="canvas-1"></canvas>
+		</div>
+			</div><!-- /container -->
+			<nav class="outer-nav left vertical">
+				<a href="#" class="">Home</a>
+				<a href="#" class="">Navigation</a>
+				<a href="/layout.html" class="">Layout</a>
+				<a href="/transitions.html" class="">Transitions</a>
+				<a href="#" class="">Input Animations</a>
+				<a href="#" class="">Text Effects</a>
+				<a href="#" class="">Experimental</a>
+
+			</nav>
+		</div><!-- /perspective -->
+		<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+		<script src="js/classie.js"></script>
+		<script src="js/typer.js"></script>
+		<script src="js/menu.js"></script>
+		<!-- <canvas id="canvas" resize> -->
+	<!-- /* hold down the moue to change the shape of things */ -->
+	</canvas>
+	  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.2/paper-full.min.js'></script> -->
+
+		<script type="text/paperscript" canvas="canvas-1">
+		// Code ported to Paper.js from http://the389.com/9/1/
+	// with permission.
+
+	var values = {
+		friction: 0.8,
+		timeStep: 0.01,
+		amount: 15,
+		mass: 2,
+		count: 0
+	};
+	values.invMass = 1 / values.mass;
+
+	var path, springs;
+	var size = view.size * [1.2, 1];
+
+	var Spring = function(a, b, strength, restLength) {
+		this.a = a;
+		this.b = b;
+		this.restLength = restLength || 80;
+		this.strength = strength ? strength : 0.15;
+		this.mamb = values.invMass * values.invMass;
+	};
+
+	Spring.prototype.update = function() {
+		var delta = this.b - this.a;
+		var dist = delta.length;
+		var normDistStrength = (dist - this.restLength) /
+				(dist * this.mamb) * this.strength;
+		delta.y *= normDistStrength * values.invMass * 0.2;
+		if (!this.a.fixed)
+			this.a.y += delta.y;
+		if (!this.b.fixed)
+			this.b.y -= delta.y;
+	};
+
+
+	function createPath(strength) {
+		var path = new Path({
+			fillColor: 'black'
+		});
+		springs = [];
+		for (var i = 0; i <= values.amount; i++) {
+			var segment = path.add(new Point(i / values.amount, 0.5) * size);
+			var point = segment.point;
+			if (i == 0 || i == values.amount)
+				point.y += size.height;
+			point.px = point.x;
+			point.py = point.y;
+			// The first two and last two points are fixed:
+			point.fixed = i < 2 || i > values.amount - 2;
+			if (i > 0) {
+				var spring = new Spring(segment.previous.point, point, strength);
+				springs.push(spring);
+			}
+		}
+		path.position.x -= size.width / 4;
+		return path;
+	}
+
+	function onResize() {
+		if (path)
+			path.remove();
+		size = view.bounds.size * [2, 1];
+		path = createPath(0.1);
+	}
+
+	function onMouseMove(event) {
+		var location = path.getNearestLocation(event.point);
+		var segment = location.segment;
+		var point = segment.point;
+
+		if (!point.fixed && location.distance < size.height / 4) {
+			var y = event.point.y;
+			point.y += (y - point.y) / 6;
+			if (segment.previous && !segment.previous.fixed) {
+				var previous = segment.previous.point;
+				previous.y += (y - previous.y) / 24;
+			}
+			if (segment.next && !segment.next.fixed) {
+				var next = segment.next.point;
+				next.y += (y - next.y) / 24;
+			}
+		}
+	}
+
+	function onFrame(event) {
+		updateWave(path);
+	}
+
+	function updateWave(path) {
+		var force = 1 - values.friction * values.timeStep * values.timeStep;
+		for (var i = 0, l = path.segments.length; i < l; i++) {
+			var point = path.segments[i].point;
+			var dy = (point.y - point.py) * force;
+			point.py = point.y;
+			point.y = Math.max(point.y + dy, 0);
+		}
+
+		for (var j = 0, l = springs.length; j < l; j++) {
+			springs[j].update();
+		}
+		path.smooth({ type: 'continuous' });
+	}
+
+	function onKeyDown(event) {
+		if (event.key == 'space') {
+			path.fullySelected = !path.fullySelected;
+			path.fillColor = path.fullySelected ? null : 'black';
+		}
+	}
+		</script>
+
+		<!-- <script src="js/string.js"></script> -->
+</div>
+		<!-- Define inlined JavaScript -->
+		<!-- For the demo ad only -->
+		<!-- <footer class='footer-home'></footer> -->
+	</body>
+</html>

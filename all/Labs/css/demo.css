@@ -111,7 +111,7 @@ body {
 	/* background: #ddd; */
 	color: #5a5350;
 	font-weight: 300;
-	font-family: 'AtlasGrotesk-Regular', Calibri, Arial, sans-serif;
+	font-family: 'AtlasGrotesk-Light', Calibri, Arial, sans-serif;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -142,7 +142,7 @@ header.codrops-header.sec-header {
     margin: unset;
     padding: 0;
     margin-bottom: 20px;
-    margin-top: 100px;
+    margin-top: 0px;
 }
 
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
@@ -191,9 +191,11 @@ footer.footer-home {
 }
 
 p.description-copy {
-    font-size: 1em !important;
-    text-align: left;
-    font-family: 'AtlasGrotesk-Light', Arial'; !important;;
+    font-size: 15.6px !important;
+    text-align: justify;
+    margin-bottom: 100px !important;
+    font-family: 'AtlasTypewriter-Light' !important;
+    line-height: 1.7 !important;
 }
 
 /* To Navigation Style */
@@ -261,9 +263,10 @@ p.description-copy {
 	float: left;
 	width: 100%;
 	padding: 0 2em;
-	min-height: 300px;
+	min-height: 70px;
 	position: relative;
 	text-align: center;
+	margin-top: 0px;
 }
 
 .column:nth-child(2) {
@@ -287,8 +290,16 @@ p.description-copy {
 canvas[resize] {
     width: 100%;
     z-index: -1;
-    height: 100%;
+    height: 300px;
     margin-top: -450px;
+}
+
+.codrops-top.clearfix img {
+    width: 50px;
+    padding: 7px;
+    position: absolute;
+    top: 8px;
+    right: 70px;
 }
 
 .column p {
@@ -347,9 +358,9 @@ button {
 
 button:hover,
 button:active {
-	background: white;
-	color: black;
-	box-shadow: 10px 10px 35px #d4d1d1;
+	background: black;
+	color: white !important;
+	/* box-shadow: 10px 10px 35px #d4d1d1; */
 	transition: background .3s, box-shadow .3s;
 }
 
@@ -379,6 +390,7 @@ button:active {
 		min-height: 0;
 		padding: 2em;
 		text-align: center;
+		padding-top: 0px;
 	}
 
 	.column p {
@@ -392,6 +404,9 @@ button:active {
 }
 
 @media screen and (max-width: 25em) {
+header.codrops-header.sec-header{
+	margin-top: 40px;
+}
 
 	.codrops-header {
 		font-size: 80%;
@@ -405,4 +420,29 @@ button:active {
 		display: none;
 	}
 
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 134px;
+    background-color: black;
+    color: fff;
+    text-align: left;
+    border-radius: 0px;
+    font-size: 10px;
+    padding: 10px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }

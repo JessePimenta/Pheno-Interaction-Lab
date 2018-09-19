@@ -15,15 +15,17 @@ a {
 }
 
 .demo-2 {
-	background: #ece6e6;
+	background: #151923;
+	font-family: 'AtlasTypewriter-Regular';
+	color: white !important;
 }
 
 .demo-2 a {
-	color: #dc4242;
+	color: #ffffff;
 }
 
 .demo-3 {
-	background: #1a1a1a;
+	background: #151923;
 }
 
 a:hover, a:focus {
@@ -39,7 +41,7 @@ a:hover, a:focus {
 	pointer-events: none;
 }
 
-html.js, 
+html.js,
 .js body {
 	height: 100vh;
 	overflow: hidden;
@@ -60,7 +62,7 @@ html.js,
 	text-align: center;
 	width: 100%;
 	height: 100%;
-	background: #e4e4e4;
+	background: #151923;
 	color: #02161E;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -75,21 +77,23 @@ html.js,
 }
 
 .demo-2 .codrops-header {
-	background: #ded9d9;
+	background: #151923;
 	color: #5b5e69;
 }
 
 .codrops-header__title {
 	margin: 0.5em 0 0;
 	letter-spacing: -1px;
-	font-size: 1.5em;
+	font-size: 2em;
 	line-height: 1;
 	font-weight: 400;
+	color: white;
 }
 
 .info {
 	font-size: 0.85em;
 	font-weight: 500;
+	color: white;
 }
 
 /* Top Navigation Style */
@@ -200,7 +204,7 @@ body .pater {
 }
 
 .demo-2 .pater {
-	background: #232121;
+	background: #151923;
 }
 
 .pater::before {

@@ -20,7 +20,7 @@ body {
 
 .page {
 	padding: 6.5em;
-	background: #66c6ff;
+	background: #151923;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -244,7 +244,7 @@ body {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: #ddd;
+	background: #151923;
 }
 
 /* Revealer effects */
@@ -253,11 +253,11 @@ body {
 /* One layer effect (effect-1) */
 
 .anim--effect-1 .page:first-child {
-	background: #605BD4;
+	background: #151923;
 }
 
 .anim--effect-1 .page:nth-child(2) {
-	background: #FF6EAE;
+	background: #151923;
 }
 
 .anim--effect-1 .revealer--animate .revealer__layer {
@@ -301,11 +301,11 @@ body {
 /* Two layer effect (effect-2) */
 
 .anim--effect-2 .page:first-child {
-	background: #9cdab1;
+	background: #151923;
 }
 
 .anim--effect-2 .page:nth-child(2) {
-	background: #F9C969;
+	background: #151923;
 }
 
 .anim--effect-2 .revealer--animate .revealer__layer {
@@ -398,7 +398,7 @@ body {
 /* Three layer effect (effect-3) */
 
 .anim--effect-3 .page:nth-child(2) {
-	background: #ECF3A3;
+	background: #151923;
 }
 
 .anim--effect-3 .revealer--animate .revealer__layer {
@@ -526,11 +526,11 @@ body {
 /* Forth effect */
 
 .anim--effect-4 .page:first-child {
-	background: #28282D;
+	background: #151923;
 }
 
 .anim--effect-4 .page:nth-child(2) {
-	background: #F15C5C;
+	background: #151923;
 }
 
 .anim--effect-4 .page--animate-top .quote {

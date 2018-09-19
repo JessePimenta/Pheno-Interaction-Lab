@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Page Reveal Effects | Codrops</title>
+		<title>Page Reveal Effects</title>
 		<meta name="description" content="Some inspiration for multi-layer page reveal effects" />
 		<meta name="keywords" content="overlay, reveal, effect, page transition, inspiration, javascript" />
 		<meta name="author" content="Codrops" />
@@ -31,15 +31,18 @@
 				<div class="page page--current"><!-- intro page -->
 					<header class="codrops-header">
 						<div class="codrops-links">
-							<a class="codrops-icon codrops-icon--prev" href="http://tympanus.net/Development/IsometricGrids/" title="Previous Demo"><span>Previous Demo</span></a>
-							<a class="codrops-icon codrops-icon--drop" href="http://tympanus.net/codrops/?p=27125" title="Back to the article"><span>Back to the Codrops article</span></a>
+
+								<a class="left" href="/layout/3/shop-item-layout.html"><span>Previous Lab</span></a>
+								<a class="left" href="/transitions/3/store-checkout-concepts.html"><span>&nbsp; &nbsp; Next Lab</span></a>
+								<!-- <a class="left" href="/"><span>Home</span></a> -->
+
 						</div>
-						<h1 class="codrops-header__title">Multi-Layer Page Transition Effects</h1>
+						<h1 class="codrops-header__title">Page Reveal Effects</h1>
 						<div class="codrops-header__subbox">
 							<span>Choose an effect:</span>
 							<div class="custom-select">
 								<select name="select" id="select-effect">
-									<option value="effect-3" data-layers="3" data-colors="#0092DD,#fff,#3E3A35" selected>Triple Swoosh</option> 
+									<option value="effect-3" data-layers="3" data-colors="#0092DD,#fff,#3E3A35" selected>Triple Swoosh</option>
 									<option value="effect-1" data-layers="1" data-colors="#202023">Simple</option>
 									<option value="effect-2" data-layers="2" data-colors="#202023,#3D4A41">Duo Move</option>
 									<option value="effect-4" data-layers="3" data-colors="#202023,#555,#d1d1d1">Content Move</option>
@@ -47,18 +50,23 @@
 							</div>
 						</div>
 					</header>
-					<a class="pater" href="http://goo.gl/ws0zHr">
-						<img class="pater__img" src="img/HackReactorLogo.svg" alt="Hack Reactor" />
-						<div class="pater__text">
-							<h2 class="pater__title">Your CS success starts here.</h2>
-							<p class="pater__desc">Hack Reactor's 12-week immersive coding school is accepting applications for onsite and online courses. <strong>Apply now and become a software engineer.</strong></p>
-						</div>
-					</a>
 				</div><!-- /page -->
-				<div class="page">
+				<div class="page page--current">
 					<blockquote class="quote">
-						<p>A good programmer is someone who always looks both ways before crossing a one-way street. </p>
-						<footer>Doug Linder</footer>
+<img src="/transitions/1/img/6.jpg" alt="">
+						<!-- <footer>Doug Linder</footer> -->
+					</blockquote>
+				</div>
+				<div class="page page--current">
+					<blockquote class="quote">
+<img src="/transitions/1/img/7.jpg" alt="">
+						<!-- <footer>Doug Linder</footer> -->
+					</blockquote>
+				</div>
+				<div class="page page--current">
+					<blockquote class="quote">
+<img src="/transitions/1/img/8.jpg" alt="">
+						<!-- <footer>Doug Linder</footer> -->
 					</blockquote>
 				</div>
 			</div><!-- /pages -->
@@ -79,12 +87,12 @@
 		(function() {
 			var pages = [].slice.call(document.querySelectorAll('.pages > .page')),
 				currentPage = 0,
-				
+
 				revealerOpts = {
 					// the layers are the elements that move from the sides
 					nmbLayers : 3,
 					// bg color of each layer
-					bgcolor : ['#0092DD', '#fff', '#3E3A35'],
+					bgcolor : ['#000', '#fff', '#eee'],
 					// effect classname
 					effect : 'anim--effect-3',
 					onStart : function(direction) {
@@ -116,7 +124,7 @@
 					callbackFn = function() {
 						classie.remove(pages[currentPage], 'page--current');
 						currentPage = currentPage === 0 ? 1 : 0;
-						classie.add(pages[currentPage], 'page--current');	
+						classie.add(pages[currentPage], 'page--current');
 					};
 
 				revealer.reveal(direction, callbackTime, callbackFn);
@@ -148,7 +156,7 @@
 						nextPage.className = 'page';
 					}
 				};
-				
+
 				revealer = new Revealer(revealerOpts);
 			}
 		})();

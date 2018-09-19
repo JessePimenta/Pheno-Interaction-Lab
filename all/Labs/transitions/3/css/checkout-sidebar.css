@@ -10,7 +10,7 @@ a.checkout__button {
     position: relative;
     display: block;
     padding: 1em;
-    color: #8d93b6;
+    color: #799872;
     font-weight: 700;
     -webkit-transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), color 0.5s cubic-bezier(0.2, 1, 0.3, 1);
     transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), color 0.5s cubic-bezier(0.2, 1, 0.3, 1);
@@ -18,7 +18,7 @@ a.checkout__button {
 
 a.checkout__button:hover,
 a.checkout__button:focus {
-    color: #8d93b6;
+    color: #799872;
 }
 
 .checkout__button:focus {
@@ -75,7 +75,7 @@ a.checkout__button:focus {
 }
 
 .checkout__summary th {
-    color: #8d93b6;
+    color: #69a07e;
 }
 
 .checkout__summary tbody td:last-child,
@@ -155,7 +155,7 @@ a.checkout__button:focus {
 .checkout__option--loud {
     padding: 0.5em 1em;
     border: 2px solid #f4f4f4;
-    background: #797678;
+    background: #69a07e;
     font-weight: bold;
     font-size: 1.15em;
 }

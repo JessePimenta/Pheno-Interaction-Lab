@@ -20,7 +20,7 @@ body {
 
 .page {
 	padding: 6.5em;
-	background: #151923;
+	background: #ffffff;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -166,7 +166,7 @@ body {
 	flex-direction: column;
 	height: 100%;
 	margin: 0 auto;
-	max-width: 800px;
+	max-width: 980px;
 	padding: 1em;
 	-webkit-box-align: end;
 	-ms-flex-align: end;
@@ -253,7 +253,7 @@ body {
 /* One layer effect (effect-1) */
 
 .anim--effect-1 .page:first-child {
-	background: #151923;
+	background: #ffffff;
 }
 
 .anim--effect-1 .page:nth-child(2) {
@@ -301,7 +301,7 @@ body {
 /* Two layer effect (effect-2) */
 
 .anim--effect-2 .page:first-child {
-	background: #151923;
+	background: #ffffff;
 }
 
 .anim--effect-2 .page:nth-child(2) {
@@ -398,7 +398,7 @@ body {
 /* Three layer effect (effect-3) */
 
 .anim--effect-3 .page:nth-child(2) {
-	background: #151923;
+	background: #ffffff;
 }
 
 .anim--effect-3 .revealer--animate .revealer__layer {
@@ -526,7 +526,7 @@ body {
 /* Forth effect */
 
 .anim--effect-4 .page:first-child {
-	background: #151923;
+	background: #ffffff;
 }
 
 .anim--effect-4 .page:nth-child(2) {

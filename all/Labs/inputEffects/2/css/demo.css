@@ -19,11 +19,11 @@ html, body, .container {
 }
 
 body {
-	background: #3b3f45;
+	background: #c9c9ca;
 	color: #fff;
-	font-weight: 400;
+	font-weight: lighter;
 	font-size: 1em;
-	font-family: 'Raleway', Arial, sans-serif;
+	font-family: 'AtlasGrotesk-Medium';
 	overflow: hidden;
 	overflow-y: scroll;
 	min-height: 590px;

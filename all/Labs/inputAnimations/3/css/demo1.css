@@ -1,6 +1,6 @@
 .demo-1 {
 	--color-text: #ffffff;
-	--color-bg: #3932ad;
+	--color-bg: #155bda;
 	--color-link: #f9cb33;
 	--color-link-hover: #7b42ce;
 	--color-info: #ffffff;
@@ -36,7 +36,7 @@
 	color: #155bda;
 	background: #fff;
 	border-radius: 20px 20px 0 0;
-	font-size: 1.5rem;	
+	font-size: 1.5rem;
 }
 
 .form__title {

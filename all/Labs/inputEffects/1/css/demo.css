@@ -57,6 +57,7 @@ a:focus {
 .content h2 {
     margin: 0 0 2em;
     opacity: 0.1;
+    display: none;
 }
 
 .content p {
@@ -83,7 +84,7 @@ a:focus {
 }
 
 .bgcolor-5 {
-    background: #df6659;
+    background: #2f3238;
     color: #521e18;
 }
 
@@ -112,6 +113,7 @@ a:focus {
 
 body .nomargin-bottom {
     margin-bottom: 0;
+    display: none;
 }
 
 /* Header */
@@ -122,17 +124,18 @@ body .nomargin-bottom {
 }
 
 .codrops-header h1 {
-    font-weight: 800;
-    font-size: 4em;
+    font-weight: normal;
+    font-family: 'AtlasTypewriter-Regular';
     line-height: 1;
-    margin: 0.25em 0 0;
+    color: #000;
+    margin: 0.25em 0 0px;
 }
 
 .codrops-header h1 span {
     display: block;
     font-size: 50%;
     font-weight: 400;
-    padding: 0.325em 0 1em 0;
+    padding: 1.025em 0 1em 0;
     color: #c3c8cd;
 }
 
@@ -251,4 +254,11 @@ body .nomargin-bottom {
     .codrops-header h1 {
         font-size: 2.8em;
     }
+}
+.codrops-top.clearfix a {
+    color: black;
+    font-size: 14px;
+    font-family: "AtlasTypewriter-Regular";
+    text-transform: uppercase;
+    font-weight: 700;
 }

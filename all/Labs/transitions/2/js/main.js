@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2016, Codrops
  * http://www.codrops.com
  */
@@ -12,26 +12,9 @@
 
 	'use strict';
 
-	// some helper functions
-	/**
-	 * from https://davidwalsh.name/javascript-debounce-function
-	 */
-	function debounce(func, wait, immediate) {
-		var timeout;
-		return function() {
-			var context = this, args = arguments;
-			var later = function() {
-				timeout = null;
-				if (!immediate) func.apply(context, args);
-			};
-			var callNow = immediate && !timeout;
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
-			if (callNow) func.apply(context, args);
-		};
-	};
+	// Helper vars and functions.
 	function extend( a, b ) {
-		for( var key in b ) { 
+		for( var key in b ) {
 			if( b.hasOwnProperty( key ) ) {
 				a[key] = b[key];
 			}
@@ -39,188 +22,335 @@
 		return a;
 	}
 
-	// some vars
-	var bodyEl = document.body,
-		// window sizes
-		winsize = { width : window.innerWidth, height : window.innerHeight },
-		// support for animations
-		support = { animations : Modernizr.cssanimations },
-		// animationend event function
-		animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
-		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
-		onEndAnimation = function( el, callback ) {
-			var onEndCallbackFn = function( ev ) {
-				if( support.animations ) {
-					if( ev.target != this ) return;
-					this.removeEventListener( animEndEventName, onEndCallbackFn );
-				}
-				if( callback && typeof callback === 'function' ) { callback.call(); }
-			};
-			if( support.animations ) {
-				el.addEventListener( animEndEventName, onEndCallbackFn );
-			}
-			else {
-				onEndCallbackFn();
-			}
-		};
+	/**
+	 * Grid obj.
+	 */
+	function Grid(el, options) {
+		this.el = el;
+		// Options/Settings.
+		this.options = extend( {}, this.options );
+		extend( this.options, options );
+		// Array of GridItem objs.
+		this.items = [];
+		this._init();
+	}
 
 	/**
-	 * Revealer obj
+	 * Grid options/settings.
 	 */
-	function Revealer(options) {
+	Grid.prototype.options = {
+		// The default paths (sequence of paths) that all the grid´s items are going to use to either get hidden/covered or shown/uncovered.
+		paths : {
+			cover : ['M 0,0 10,0 10,0 0,0 Z', 'M 0,0 10,0 10,6 0,8 Z', 'M 0,0 10,0 10,10 0,10 Z'],
+			uncover : ['M 0,0 10,0 10,10 0,10 Z', 'M 0,0 10,0 10,6 0,8 Z', 'M 0,0 10,0 10,0 0,0 Z']
+		}
+	};
+
+	/**
+	 * Create and store the GridItem objs. Initialize SVG Path settings.
+	 */
+	Grid.prototype._init = function() {
+		var self = this;
+
+		// Save the default path settings for the grid (if any - data-path-uncover and data-path-cover)
+		this.paths = {
+			cover : this.el.getAttribute('data-path-cover') ? this.el.getAttribute('data-path-cover').split(';') : this.options.paths.cover,
+			uncover : this.el.getAttribute('data-path-uncover') ? this.el.getAttribute('data-path-uncover').split(';') : this.options.paths.uncover,
+		};
+
+		[].slice.call(this.el.querySelectorAll('.grid__item')).forEach(function(item) {
+			var options = {
+				paths : self.paths
+			};
+			if( self.el.getAttribute('data-delay') ) {
+				options.delay = self.el.getAttribute('data-delay');
+			}
+			if( item.getAttribute('data-delay') ) {
+				options.delay = item.getAttribute('data-delay');
+			}
+			if( self.el.getAttribute('data-fill') ) {
+				options.maskFill = self.el.getAttribute('data-fill');
+			}
+			if( item.getAttribute('data-fill') ) {
+				options.maskFill = item.getAttribute('data-fill');
+			}
+			if( self.el.getAttribute('data-duration') ) {
+				options.duration = self.el.getAttribute('data-duration');
+			}
+			if( item.getAttribute('data-duration') ) {
+				options.duration = item.getAttribute('data-duration');
+			}
+			if( self.el.getAttribute('data-easing-in') ) {
+				options.easein = self.el.getAttribute('data-easing-in');
+			}
+			if( item.getAttribute('data-easing-in') ) {
+				options.easein = item.getAttribute('data-easing-in');
+			}
+			if( self.el.getAttribute('data-easing-out') ) {
+				options.easeout = self.el.getAttribute('data-easing-out');
+			}
+			if( item.getAttribute('data-easing-out') ) {
+				options.easeout = item.getAttribute('data-easing-out');
+			}
+
+			var gridItem = new GridItem(item, options);
+			self.items.push(gridItem);
+		});
+	};
+
+	/**
+	 * Hides or shows each one of it´s items. action is either 'cover' or 'uncover'.
+	 */
+	Grid.prototype.render = function(action, callback) {
+		var action = action === 'cover' || action === 'uncover' ? action : 'cover',
+			finished = 0;
+
+		for( var i = 0, len = this.items.length; i < len; ++i ) {
+			this.items[i].render(action, function() {
+				++finished;
+				if( finished === len && typeof callback === 'function' ) {
+					callback();
+					self.isAnimating = false;
+				}
+			});
+		}
+	};
+
+	/**
+	 * GridItem obj.
+	 */
+	function GridItem(el, options) {
+		this.el = el;
+
+		var child = this.el.children[0];
+		this.type = child.nodeName === 'audio' || child.nodeName === 'video' ||
+					child.getAttribute('data-type') && ( child.getAttribute('data-type') === 'youtube' || child.getAttribute('data-type') === 'vimeo' ) ?
+						'video' : 'general';
+		// Options/Settings.
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
 		this._init();
 	}
 
 	/**
-	 * Revealer default options
+	 * GridItem options/settings.
 	 */
-	Revealer.prototype.options = {
-		// total number of revealing layers (min is 1)
-		nmbLayers : 1,
-		// bg color for the revealing layers
-		bgcolor : '#fff',
-		// effect classname
-		effect : 'anim--effect-1',
-		// callback
-		onStart : function(direction) { return false; },
-		// callback
-		onEnd : function(direction) { return false; }
+	GridItem.prototype.options = {
+		duration : 600,
+		delay : 0,
+		maskFill : '#02161E',
+		easein : 'easeInQuad',
+		easeout : 'easeOutQuad'
 	};
 
 	/**
-	 * build layer structure
-	 * add effect class
-	 * init/bind events
+	 * Create SVG. Initialize SVG Path settings. Init video if any.
 	 */
-	Revealer.prototype._init = function() {
-		// add revealer layers
-		this._addLayers();
-		// now we have access to the layers
-		this.layers = [].slice.call(this.revealerWrapper.children);
-		// init/bind events
-		this._initEvents();
-	};
+	GridItem.prototype._init = function() {
+		// The path settings for the item
+		this.paths = {};
+		this.paths.cover = this.el.getAttribute('data-path-cover') ? this.el.getAttribute('data-path-cover').split(';') : this.options.paths.cover;
+		this.paths.uncover = this.el.getAttribute('data-path-uncover') ? this.el.getAttribute('data-path-uncover').split(';') : this.options.paths.uncover;
 
-	/**
-	 * init/bind events
-	 */
-	Revealer.prototype._initEvents = function() {
-		// window resize: recalculate window sizes
-		this.debounceResize = debounce(function(ev) {
-			winsize = {width: window.innerWidth, height: window.innerHeight};
-		}, 10);
-		window.addEventListener('resize', this.debounceResize);
-	};
+		// Create SVG.
+		this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+		// Fix rendering gap with 101%.
+		this.svg.setAttribute('width', '102%');
+		this.svg.setAttribute('height', '102%');
+		this.svg.setAttribute('viewBox', '0 0 10 10');
+		this.svg.setAttribute('preserveAspectRatio', 'none');
+		this.svg.setAttribute('style', 'position: absolute; top: -1px; left: -1px; pointer-events: none;');
+		this.svg.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
+		this.path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+		this.path.setAttribute('fill', this.options.maskFill);
+		this.path.setAttribute('d', '');
+		this.svg.appendChild(this.path);
+		this.el.appendChild(this.svg);
 
-	/**
-	 * build layer structure and append it to the body
-	 * add effect class
-	 */
-	Revealer.prototype._addLayers = function() {
-		this.revealerWrapper = document.createElement('div');
-		this.revealerWrapper.className = 'revealer';
-		classie.add(bodyEl, this.options.effect);
-		var  strHTML = '';
-		for(var i = 0; i < this.options.nmbLayers; ++i) {
-			var bgcolor = typeof this.options.bgcolor === 'string' ? this.options.bgcolor : (this.options.bgcolor instanceof Array && this.options.bgcolor[i] ? this.options.bgcolor[i] : '#fff');
-			strHTML += '<div style="background:' + bgcolor + '" class="revealer__layer"></div>';
+		// Check if it is a video/audio element.
+		if( this.type === 'video' ) {
+			this.player = plyr.setup({
+				controls : [],
+				clickToPlay : false
+			})[0].plyr;
+
+			var self = this;
+			this.el.querySelector('.plyr').addEventListener('ready', function() {
+				self.player.setVolume(0);
+			});
+			this.el.querySelector('.plyr').addEventListener('ended', function() {
+				self.player.seek(0);
+				if( self.isUncovered ) {
+					self.player.seek(0);
+					self.player.play();
+				}
+			});
 		}
-		this.revealerWrapper.innerHTML = strHTML;
-		bodyEl.appendChild(this.revealerWrapper);
+
+		// save the delay
+		this.delay = this.options.delay;
 	};
 
 	/**
-	 * reveal the layers
-	 * direction: right || left || top || bottom || cornertopleft || cornertopright || cornerbottomleft || cornerbottomright
+	 * Covers/Uncovers the item. action is either 'cover' or 'uncover'
 	 */
-	Revealer.prototype.reveal = function(direction, callbacktime, callback) {
-		// if animating return
+	GridItem.prototype.render = function(action, callback) {
+		var self = this,
+			steps = this.paths[action],
+			stepsTotal = this.paths[action].length,
+			pos = 1,
+			nextStep = function(pos) {
+				if( pos > stepsTotal - 1 ) {
+					if( callback && typeof callback == 'function' ) {
+						callback();
+
+						// It the type is video then play or pause
+						if( self.type === 'video' ) {
+							if( action === 'uncover' ) {
+								//self.player.seek(0); // this restarts the video
+								self.player.play();
+							}
+							else {
+								self.player.pause();
+							}
+						}
+
+						self.isUncovered = action === 'uncover';
+					}
+					return;
+				}
+
+				anime({
+					targets: self.path,
+					d : steps[pos],
+					duration : self.options.duration / (stepsTotal-1),
+					easing : pos & 1 && stepsTotal > 2 ? self.options.easein : self.options.easeout,
+					delay : pos === 1 ? self.options.delay : 0,
+					complete : function() {
+						nextStep(pos);
+					}
+				});
+
+				++pos;
+			};
+
+		this.path.setAttribute('d', steps[0]);
+		nextStep(pos);
+	};
+
+	/**
+	 * GridSlideshow obj.
+	 */
+	function GridSlideshow(el, options) {
+		this.el = el;
+		// Options/Settings.
+		this.options = extend( {}, this.options );
+		extend( this.options, options );
+		// DOM Grid elems.
+		this.gridElems = [].slice.call(this.el.querySelectorAll('.grid')),
+		// Array of Grid objs.
+		this.grids = [];
+		this.gridsTotal = this.gridElems.length,
+		this.currentGridIdx = 0,
+		this.nav = {
+			prev : this.el.querySelector('.grid-nav > button.grid__button--prev'),
+			next : this.el.querySelector('.grid-nav > button.grid__button--next')
+		},
+		this.isAnimating = false;
+		this._init();
+	}
+
+	/**
+	 * GridSlideshow options/settings.
+	 */
+	GridSlideshow.prototype.options = {
+		onCover : function(direction, gridEl, gridItems) { return false; },
+		onUncover : function(direction, gridEl, gridItems) { return false; }
+	};
+
+	/**
+	 * Init.
+	 */
+	GridSlideshow.prototype._init = function() {
+		var self = this;
+		// Preload images.
+		imagesLoaded(this.el, function() {
+			self.el.classList.add('grid-pages--loaded');
+			// Create and store the Grid objs.
+			self.gridElems.forEach(function(gridEl) {
+				var grid = new Grid(gridEl);
+				self.grids.push(grid);
+			});
+
+			// Initialize/Bind the events.
+			self._initEvents();
+		});
+	};
+
+	/**
+	 * Initialize/Bind events.
+	 */
+	GridSlideshow.prototype._initEvents = function() {
+		var self = this;
+
+		// Navigation ctrls.
+		self.nav.prev.addEventListener('click', function() { self._navigate('prev'); });
+		self.nav.next.addEventListener('click', function() { self._navigate('next'); });
+
+		// Keyboard navigation events.
+		document.addEventListener('keydown', function(ev) {
+			var keyCode = ev.keyCode || ev.which;
+			switch (keyCode) {
+				case 38:
+					self._navigate('prev');
+					break;
+				case 40:
+					self._navigate('next');
+					break;
+			}
+		});
+	};
+
+	/**
+	 * Navigate between grids.
+	 */
+	GridSlideshow.prototype._navigate = function(direction) {
 		if( this.isAnimating ) {
 			return false;
 		}
 		this.isAnimating = true;
-		// current direction
-		this.direction = direction;
-		// onStart callback
-		this.options.onStart(this.direction);
 
-		// set the initial position for the layers´ parent
-		var widthVal, heightVal, transform;
-		if( direction === 'cornertopleft' || direction === 'cornertopright' || direction === 'cornerbottomleft' || direction === 'cornerbottomright' ) {
-			var pageDiagonal = Math.sqrt(Math.pow(winsize.width, 2) + Math.pow(winsize.height, 2));
-			widthVal = heightVal = pageDiagonal + 'px';
-			
-			if( direction === 'cornertopleft' ) {
-				transform = 'translate3d(-50%,-50%,0) rotate3d(0,0,1,135deg) translate3d(0,' + pageDiagonal + 'px,0)';
-			}
-			else if( direction === 'cornertopright' ) {
-				transform = 'translate3d(-50%,-50%,0) rotate3d(0,0,1,-135deg) translate3d(0,' + pageDiagonal + 'px,0)';
-			}
-			else if( direction === 'cornerbottomleft' ) {
-				transform = 'translate3d(-50%,-50%,0) rotate3d(0,0,1,45deg) translate3d(0,' + pageDiagonal + 'px,0)';
-			}
-			else if( direction === 'cornerbottomright' ) {
-				transform = 'translate3d(-50%,-50%,0) rotate3d(0,0,1,-45deg) translate3d(0,' + pageDiagonal + 'px,0)';
-			}
+		var currentIdx = this.currentGridIdx;
+
+		if( direction === 'next' ) {
+			this.currentGridIdx = this.currentGridIdx < this.gridsTotal - 1 ? this.currentGridIdx + 1 : 0;
 		}
-		else if( direction === 'left' || direction === 'right' ) {
-			widthVal = '100vh'
-			heightVal = '100vw';
-			transform = 'translate3d(-50%,-50%,0) rotate3d(0,0,1,' + (direction === 'left' ? 90 : -90) + 'deg) translate3d(0,100%,0)';
-		}
-		else if( direction === 'top' || direction === 'bottom' ) {
-			widthVal = '100vw';
-			heightVal = '100vh';
-			transform = direction === 'top' ? 'rotate3d(0,0,1,180deg)' : 'none';
+		else if( direction === 'prev' ) {
+			this.currentGridIdx = this.currentGridIdx > 0 ? this.currentGridIdx - 1 : this.gridsTotal - 1;
 		}
 
-		this.revealerWrapper.style.width = widthVal;
-		this.revealerWrapper.style.height = heightVal;
-		this.revealerWrapper.style.WebkitTransform = this.revealerWrapper.style.transform = transform;
-		this.revealerWrapper.style.opacity = 1;
-
-		// add direction and animate classes to parent
-		classie.add(this.revealerWrapper, 'revealer--' + direction || 'revealer--right');
-		classie.add(this.revealerWrapper, 'revealer--animate');
-
-		// track the end of the animation for all layers
-		var self = this, layerscomplete = 0;
-		this.layers.forEach(function(layer) {
-			onEndAnimation(layer, function() {
-				++layerscomplete;
-				if( layerscomplete === self.options.nmbLayers ) {
-					classie.remove(self.revealerWrapper, 'revealer--' + direction || 'revealer--right');
-					classie.remove(self.revealerWrapper, 'revealer--animate');
-					
-					self.revealerWrapper.style.opacity = 0;
+		var currentGrid = this.grids[currentIdx],
+			nextGrid = this.grids[this.currentGridIdx],
+			self = this,
+			onCovered = function() {
+				// Switch the current grid element.
+				currentGrid.el.classList.toggle('grid--current');
+				nextGrid.el.classList.toggle('grid--current');
+				// Show the next grid´s items.
+				nextGrid.render('uncover', function() {
 					self.isAnimating = false;
+				});
+				self.options.onUncover(direction, nextGrid, nextGrid.items);
+			};
 
-					// callback
-					self.options.onEnd(self.direction);
-				}
-			});
-		});
-			
-		// reveal fn callback
-		if( typeof callback === 'function') {
-			if( this.callbacktimeout ) {
-				clearTimeout(this.callbacktimeout);
-			}
-			this.callbacktimeout = setTimeout(callback, callbacktime);
-		}
+		// First, cover the current grid items.
+		currentGrid.render('cover', onCovered);
+
+		// Callback.
+		this.options.onCover(direction, currentGrid, currentGrid.items);
 	};
 
-	/**
-	 * destroy method
-	 */
-	Revealer.prototype.destroy = function() {
-		classie.remove(bodyEl, this.options.effect);
-		window.removeEventListener('resize', this.debounceResize);
-		bodyEl.removeChild(this.revealerWrapper);
-	};
-
-	window.Revealer = Revealer;
+	window.GridSlideshow = GridSlideshow;
+	document.documentElement.className = 'js';
 
 })(window);

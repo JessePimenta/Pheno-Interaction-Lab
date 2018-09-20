@@ -14,73 +14,79 @@
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load -->
 		<script src="js/modernizr.custom.25376.js"></script>
-
-<script type="text/javascript">
-</script>
-
 	</head>
-	<body>
-		<div id="perspective" class="perspective effect-laydown">
+	<body class='fadeMe'>
+		<div id="perspective" class="perspective effect-airbnb">
 			<div class="container">
 				<div class="wrapper"><!-- wrapper needed for scroll -->
 					<!-- Top Navigation -->
 					<div class="codrops-top clearfix">
-						<a class="left" href="/navigation-menu-3d.html"><span>Previous Lab</span></a>
-						<a class="left" href="/navigation-interactions-2d.html"><span>Next Lab</span></a>
+						<a class="left" href="/transitions/4/carousel-slideshow.html"><span>Previous Lab</span></a>
+						<a class="left" href="/input-effects/1/comic-strip.html"><span>/ &nbsp;Next Lab</span></a>
 						<a class="right" href="/"><span>Home</span></a>
 					</div>
 					<header class="codrops-header">
-						<h1>Phenomenon Interaction Lab<span></span></h1>
-					 UI Resource Library
+						<h1>Phenomenon Interaction Lab</h1>
+						<p class='sec-number'>UI Resource Library<p>
 					</header>
 					<div class="main clearfix">
-						<div class="column" style=' padding-top:10px;'>
+						<div class="column" style='min-height:100px; padding-top:10px;'>
+							<!-- <p><button style='margin-bottom:20px;' id="showMenu">See All Labs</button></p> -->
 							<header class="codrops-header sec-header">
-								<p class='sec-number'>Section 1</p>
-								<h1 class='section-header'>Navigation</h1>
+								<p class='sec-number'>Section 3</p>
+								<h1 class='section-header'>Input Effects</h1>
 							</header>
-							<p class='description-copy'>Navigation menus are an essential part to the user experience. Below are several transitions for navigation menu's. Ease of use, combined with unique style, can evoke an immediate emotional connection between the user and the website. Click on these buttons, then click "See All Labs" to see the content being pushed away in 3D to reveal a navigation or other items.</p>
+<p class='description-copy'>
+<br><br>
+<br><br>
+</p>
 						</div>
 						<br>
 						<br>
 						<div style='margin-top:0px;' class="column">
 							<nav class="codrops-demos nav-demos">
-								<a href="navigation-menu-3d.html">Pan Right</a>
-								<a href="moveleft.html">Move Left</a>
-								<a href="rotateleft.html">Rotate Left</a>
-								<a href="movedown.html">Move Down</a>
+								<a class='tooltip' href="/transitions/1/comic-strip.html">Comic Strip</a>
+								<a href="/transitions/2/page-reveal-effects.html">Page Reveal Effects</a>
+								<a href="/transitions/3/store-checkout-concepts.html">Store Checkout Concepts</a>
+								<a href="/transitions/4/carousel-slideshow.html">Carousel Slideshow</a>
+								<!-- <a href="/bar-menu.html">Layout 4</a> -->
+								<br>
+								<br>
+								<br>
+								More coming soon.
+								<!-- <a href="movedown.html">Move Down</a>
 								<a href="rotatetop.html">Rotate Top</a>
-								<a href="laydown.html" class="current-demo">Lay Down</a>
+								<a href="laydown.html">Lay Down</a> -->
 							</nav>
-							<p><button style='margin-bottom:20px;margin-top:40px' id="showMenu">Open Menu</button></p>
 						</div>
 					</div><!-- /main -->
 				</div><!-- wrapper -->
 				<div class="canvas">
-		<!-- <canvas resize="true" id="canvas-1"></canvas> -->
+		<canvas resize="true" id="canvas-1"></canvas>
 		</div>
 			</div><!-- /container -->
-			<nav class="outer-nav right horizontal top">
-				<a href="#" class="">Home</a>
-				<a href="#" class="">Navigation</a>
-				<a href="/transitions.html" class="">Transitions</a>
-				<a href="#" class="">Input Interactions</a>
+			<nav class="outer-nav left vertical">
+				<a href="/" class="">Home</a>
+				<a href="/navigation.html" class="">Navigation</a>
 				<a href="/layout.html" class="">Layout</a>
+				<a href="/transitions.html" class="">Transitions</a>
+				<a href="#" class="">Input Animations</a>
 				<a href="#" class="">Text Effects</a>
 				<a href="#" class="">Experimental</a>
 
 			</nav>
 		</div><!-- /perspective -->
+		<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
 		<script src="js/classie.js"></script>
+		<script src="js/typer.js"></script>
 		<script src="js/menu.js"></script>
 		<!-- <canvas id="canvas" resize> -->
 	<!-- /* hold down the moue to change the shape of things */ -->
 	</canvas>
-	<!-- <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script> -->
-	  <script src='https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.2/paper-full.min.js'></script>
+	  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.2/paper-full.min.js'></script> -->
 
 		<script type="text/paperscript" canvas="canvas-1">
 		// Code ported to Paper.js from http://the389.com/9/1/

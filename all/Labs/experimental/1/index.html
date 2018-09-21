@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>3D Room Exhibition | Codrops</title>
+		<title>3D Room Exhibition</title>
 		<meta name="description" content="An experimental 3D room template that aims to show exhibition details in an interesting way" />
 		<meta name="keywords" content="3d, room, exhibition, gallery, perspective, animation, web design, template" />
-		<meta name="author" content="Codrops" />
+		<meta name="author" content="Jesse Pimenta" />
 		<link rel="shortcut icon" href="favicon.ico">
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -15,22 +15,14 @@
 	</head>
 	<body>
 		<svg class="hidden">
-			<symbol id="icon-arrow" viewBox="0 0 24 24">
-				<title>arrow</title>
-				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
-			</symbol>
-			<symbol id="icon-drop" viewBox="0 0 24 24">
-				<title>drop</title>
-				<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/><path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
-			</symbol>
 			<symbol id="icon-menu" viewBox="0 0 24 24">
 				<title>menu</title>
 				<path d="M24,5.8H0v-2h24V5.8z M19.8,11H4.2v2h15.6V11z M24,18.2H0v2h24V18.2z"/>
 			</symbol>
-			<symbol id="icon-cross" viewBox="0 0 24 24">
+			<!-- <symbol id="icon-cross" viewBox="0 0 24 24">
 				<title>cross</title>
 				<path d="M13.4,12l7.8,7.8l-1.4,1.4l-7.8-7.8l-7.8,7.8l-1.4-1.4l7.8-7.8L2.7,4.2l1.4-1.4l7.8,7.8l7.8-7.8l1.4,1.4L13.4,12z"/>
-			</symbol>
+			</symbol> -->
 			<symbol id="icon-info" viewBox="0 0 20 20">
 				<title>info</title>
 				<circle style="fill:#fff" cx="10" cy="10" r="9.1"/>
@@ -41,18 +33,18 @@
 			<div class="scroller">
 				<div class="room room--current">
 					<div class="room__side room__side--back">
-						<img class="room__img" src="img/set4/3.jpg" alt="Some image"/>
-						<img class="room__img" src="img/set4/6.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki1.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki2.jpg" alt="Some image"/>
 					</div>
 					<div class="room__side room__side--left">
-						<img class="room__img" src="img/set4/7.jpg" alt="Some image"/>
-						<img class="room__img" src="img/set4/1.jpg" alt="Some image"/>
-						<img class="room__img" src="img/set4/2.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki3.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki4.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki9.jpeg" alt="Some image"/>
 					</div>
 					<div class="room__side room__side--right">
-						<img class="room__img" src="img/set4/4.jpg" alt="Some image"/>
-						<img class="room__img" src="img/set4/5.jpg" alt="Some image"/>
-						<img class="room__img" src="img/set4/8.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki6.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki7.jpg" alt="Some image"/>
+						<img class="room__img" src="img/set1/araki8.jpg" alt="Some image"/>
 					</div>
 					<div class="room__side room__side--bottom"></div>
 				</div><!-- /room -->
@@ -128,15 +120,16 @@
 		</div><!-- /container -->
 		<div class="content">
 			<header class="codrops-header">
-				<div class="codrops-links">
-					<a class="codrops-icon codrops-icon--prev" href="https://tympanus.net/Development/ExpandingBarMenus/" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
-					<a class="codrops-icon codrops-icon--drop" href="https://tympanus.net/codrops/?p=30534" title="Back to the article"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
+				<div class="codrops-top clearfix">
+					<a class="left" href="/inputAnimations/4/search-ui11.html"><span>Previous Lab /</span></a>
+					<a class="left" href="/textEffects/1/index.html"><span>Next Lab /</span></a>
+					<a class="right" href="/"><span>Home</span></a>
 				</div>
-				<h1 class="codrops-header__title">3D Room Exhibition</h1>
-				<div class="subject">モダンアート</div>
+				<h1 class="codrops-header__title"></h1>
+				<div class="subject">3D Room Exhibition</div>
 				<button class="btn btn--info btn--toggle">
 					<svg class="icon icon--info"><use xlink:href="#icon-info"></use></svg>
-					<svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg>	
+					<svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg>
 				</button>
 				<button class="btn btn--menu btn--toggle">
 					<svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg>
@@ -151,18 +144,18 @@
 					</ul>
 				</div>
 				<div class="overlay overlay--info">
-					<p class="info">&ldquo;Life in Pieces&rdquo; is the subject of all exhibitions taking place in the Mirai Art Gallery in 2017. Fragments of lost memories, fleeting moments and the breaking apart of human nature are this year's highlighted topics. We welcome you to a exploration space of a unique kind&mdash;the one that will stay with you and impact you on many levels. Come visit us.</p>
+					<p class="info">Araki is considered to be one of the most prolific artists alive or dead in Japan. Many of his photographs are erotic; His work has been said to exist on a line between art and pornography.[7] Among his photography books are Sentimental Journey (1971), and Tokyo Lucky Hole (1990). Sentimental Journey "1972-1992" is a diary of life with his wife Yōko until she died of ovarian cancer in 1990. The first part of Sentimental Journey sees the couple embarking on married life – their honeymoon and having sex. Pictures taken during her last days were published in Winter Journey. Parr and Badger include four of Araki's books in the first volume of their photobook history:[9] Zerokkusu Shashincho 24 (Xeroxed Photo Album), Senchimentaru na Tabi (Sentimental Journey), Tokyo Lucky Hole and Shokuji (The Banquet).</p>
 				</div>
 			</header>
 			<h4 class="location">Mirai Art Gallery &amp; Exhibition Center, Sapporo, Japan</h4>
 			<div class="slides">
 				<div class="slide">
-					<h2 class="slide__name">Kato <br/>Yatsumoto</h2>
+					<h2 class="slide__name">Nobuyoshi <br/>Araki</h2>
 					<h3 class="slide__title">
-						<span>&ldquo;Understanding Life&rdquo;</span>
+						<span>&ldquo;Desired Objects&rdquo;</span>
 						<div class="slide__number">Room <strong>Tenjin</strong></div>
 					</h3>
-					<p class="slide__date">25 Mar – 11 May 2017</p>
+					<p class="slide__date">25 Mar – 11 Oct 2018</p>
 				</div>
 				<div class="slide">
 					<h2 class="slide__name">Aiko <br/>Akiyama</h2>

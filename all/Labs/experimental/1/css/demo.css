@@ -6,8 +6,8 @@
 }
 
 body {
-	font-family: 'Josefin Sans', sans-serif;
-	letter-spacing: 0.1em;
+	font-family: 'AtlasGrotesk-Regular', sans-serif;
+	letter-spacing: 0.05em;
 	color: #1f1f21;
 	background: #cecece;
 	height: 100vh;
@@ -83,11 +83,12 @@ a:focus {
 
 .btn--info {
 	margin: 0 2em 0 auto;
+	z-index: 100;
 }
 
 .btn--toggle.btn--active {
-	z-index: 100;
-	color: #fff;
+	/* z-index: 100; */
+	/* color: #fff; */
 }
 
 .btn--toggle.btn--active:hover {
@@ -96,7 +97,7 @@ a:focus {
 
 .btn--toggle .icon:nth-child(2),
 .btn--toggle.btn--active .icon:first-child {
-	display: none;
+	display: block;
 }
 
 .btn--toggle.btn--active .icon:nth-child(2) {
@@ -297,12 +298,12 @@ a:focus {
 
 .slide__name {
 	font-size: 15vw;
-	line-height: 0.8;
+	line-height: 1.05;
 	margin: 0;
-	padding: 0 0 0 5vw;
+	font-family: 'AtlasGrotesk-Bold';
 	text-indent: -5vw;
 	letter-spacing: -0.05em;
-	text-transform: lowercase;
+	text-transform: none;
 	color: #fff;
 }
 
@@ -317,7 +318,7 @@ a:focus {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin: 0.75em 0 0 0;
+	margin: 0.25em 0 0 0;
 	color: #fff;
 }
 
@@ -368,7 +369,7 @@ a:focus {
 }
 
 .overlay--info {
-	background: rgba(23,94,236,0.4);
+	background: rgba(0, 0, 0, 0.82);
 }
 
 .overlay--menu {
